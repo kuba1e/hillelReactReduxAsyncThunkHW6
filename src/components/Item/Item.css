@@ -1,0 +1,15 @@
+.table-data {
+  padding: 5px;
+  border: 2px solid rgb(161, 83, 69);
+}
+
+.delete-btn,
+.edit-btn {
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: rgb(158, 98, 87);
+  cursor: pointer;
+}
+.edit-btn {
+  background-color: rgb(90, 146, 102);
+}

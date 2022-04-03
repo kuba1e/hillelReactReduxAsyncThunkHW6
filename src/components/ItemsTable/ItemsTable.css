@@ -1,0 +1,28 @@
+.table-container {
+  padding: 50px 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.table {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.table-title {
+  font-size: 36px;
+  padding: 20px;
+  text-align: center;
+}
+
+.table-header-item {
+  text-align: center;
+  padding: 10px;
+  font-weight: 700;
+  border: 2px solid rgb(161, 83, 69);
+}
+
+.table-body {
+  text-align: center;
+  border: 2px solid rgb(161, 83, 69);
+}
