@@ -51,9 +51,11 @@ async function sendData(dispatch, name, nickname, phone) {
 
 async function updateData(dispatch, data) {
   try {
+    const {id}= data
+    delete data.id
     dispatch(updatedContact());
     const response = await fetch(
-      `https://contacts12.herokuapp.com/users/${data.id}`,
+      `https://contacts12.herokuapp.com/users/${id}`,
       {
         method: "PUT",
         body: JSON.stringify(data),
