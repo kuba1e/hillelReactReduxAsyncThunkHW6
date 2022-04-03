@@ -10,7 +10,7 @@ import {
   failedToUpdateContact,
 } from "../actions";
 
-async function fetchData(dispatch) {
+const fetchData = async (dispatch) => {
   try {
     dispatch(requestedContacts());
     const response = await fetch("https://contacts12.herokuapp.com/users");
@@ -22,9 +22,9 @@ async function fetchData(dispatch) {
   } catch (error) {
     dispatch(failedToDownloadContacts(error.message));
   }
-}
+};
 
-async function sendData(dispatch, name, nickname, phone) {
+const sendData = async (dispatch, name, nickname, phone) => {
   try {
     const newContact = {
       name,
@@ -47,12 +47,12 @@ async function sendData(dispatch, name, nickname, phone) {
   } catch (error) {
     dispatch(failedToSendContact(error.message));
   }
-}
+};
 
-async function updateData(dispatch, data) {
+const updateData = async (dispatch, data) => {
   try {
-    const {id}= data
-    delete data.id
+    const { id } = data;
+    delete data.id;
     dispatch(updatedContact());
     const response = await fetch(
       `https://contacts12.herokuapp.com/users/${id}`,
@@ -71,9 +71,9 @@ async function updateData(dispatch, data) {
   } catch (error) {
     dispatch(failedToUpdateContact(error.message));
   }
-}
+};
 
-async function deleteData(dispatch, id) {
+const deleteData = async (dispatch, id) => {
   try {
     dispatch(deletedContact());
     const response = await fetch(
@@ -89,6 +89,6 @@ async function deleteData(dispatch, id) {
   } catch (error) {
     dispatch(failedToDeleteContact(error.message));
   }
-}
+};
 
 export { fetchData, sendData, deleteData, updateData };
