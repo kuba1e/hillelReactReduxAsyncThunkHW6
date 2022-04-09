@@ -4,7 +4,7 @@ import Item from "../Item/";
 import "./ItemsTable.css";
 
 export default function ItemsTable(props) {
-  const contacts = useSelector(({ contacts: { contacts } }) => contacts) || [];
+  const contacts = useSelector(({ contacts: { contacts } }) => contacts);
 
   return (
     <div className="table-container">
