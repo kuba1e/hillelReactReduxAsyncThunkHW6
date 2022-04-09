@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import "./ItemAddForm.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  sendContact,
+  setActiveForm,
+  updateContact,
+} from "../../features/contacts";
 
-export default function ItemAddForm({
-  onAddContact,
-  onUpdateContact,
-  onHideForm,
-  editedValue,
-  ...props
-}) {
+export default function ItemAddForm(props) {
+  const editedValue = useSelector(
+    ({ contacts: { editedValue } }) => editedValue
+  );
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState(() => {
     const initialState = Object.keys(editedValue).length
       ? editedValue
@@ -22,10 +26,9 @@ export default function ItemAddForm({
   const onSubmitForm = (event) => {
     event.preventDefault();
     const submitData = Object.keys(editedValue).length
-      ? onUpdateContact
-      : onAddContact;
-    submitData(formData);
-    onHideForm();
+      ? updateContact
+      : sendContact;
+    dispatch(submitData(formData));
   };
 
   const onResetForm = (event) => {
@@ -73,7 +76,13 @@ export default function ItemAddForm({
           <button className="btn add-btn" type="submit">
             Save
           </button>
-          <button className="btn cancel-btn" type="reset" onClick={onHideForm}>
+          <button
+            className="btn cancel-btn"
+            type="reset"
+            onClick={() => {
+              dispatch(setActiveForm());
+            }}
+          >
             Cancel
           </button>
         </div>

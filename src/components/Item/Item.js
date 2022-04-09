@@ -1,13 +1,15 @@
 import React from "react";
 import "./Item.css";
+import { useDispatch } from "react-redux";
+import {
+  setEditedValue,
+  deleteContact,
+  setActiveForm,
+} from "../../features/contacts";
 
-export default function Item({
-  index,
-  contact: { id, name, nickname, phone },
-  onDeleteContact,
-  onEditContact,
-  ...props
-}) {
+export default function Item({ contact, index, props }) {
+  const dispatch = useDispatch();
+  const { id, name, nickname, phone } = contact;
   return (
     <tr>
       <td className="table-data">{index + 1}</td>
@@ -16,10 +18,21 @@ export default function Item({
       <td className="table-data">{phone}</td>
       <td className="table-data">
         <div className="btn-container">
-          <button className="delete-btn" onClick={() => onDeleteContact(id)}>
+          <button
+            className="delete-btn"
+            onClick={() => {
+              dispatch(deleteContact(id));
+            }}
+          >
             <i className="fa-solid fa-user-minus"></i>
           </button>
-          <button className="edit-btn" onClick={() => onEditContact(id)}>
+          <button
+            className="edit-btn"
+            onClick={() => {
+              dispatch(setEditedValue(contact));
+              dispatch(setActiveForm());
+            }}
+          >
             <i className="fa-solid fa-user-pen"></i>
           </button>
         </div>

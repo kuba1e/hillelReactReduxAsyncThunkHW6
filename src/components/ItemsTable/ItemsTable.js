@@ -1,13 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Item from "../Item/";
 import "./ItemsTable.css";
 
-export default function ItemsTable({
-  contacts,
-  onDeleteContact,
-  onEditContact,
-  ...props
-}) {
+export default function ItemsTable(props) {
+  const contacts = useSelector(({ contacts: { contacts } }) => contacts) || [];
+
   return (
     <div className="table-container">
       <table className="table">
@@ -23,13 +21,7 @@ export default function ItemsTable({
         </thead>
         <tbody className="table-body">
           {contacts.map((contact, index) => (
-            <Item
-              key={contact.id}
-              contact={contact}
-              index={index}
-              onDeleteContact={onDeleteContact}
-              onEditContact={onEditContact}
-            />
+            <Item key={contact.id} contact={contact} index={index} />
           ))}
         </tbody>
       </table>
